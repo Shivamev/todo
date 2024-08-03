@@ -7,8 +7,8 @@ import { addCompleted, deleteTask } from "../redux/action";
 function TASKLIST() {
     const [activeDiv, setActiveDiv] = useState('allTasks');
     const dispatch = useDispatch()
-    const tasks = useSelector((state) => state.tasks.tasks)
-    const compTasks = useSelector((state) => state.tasks.completedTasks)
+    const tasks = useSelector((state) => state.user.tasks)
+    const compTasks = useSelector((state) => state.user.completedTasks)
     console.log(tasks, "hi");
     console.log(compTasks, "hifgg");
     let showTasks = ""

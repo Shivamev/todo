@@ -7,9 +7,6 @@ import { useDispatch } from 'react-redux';
 import { registerUser } from '../redux/action';
 
 const SignupSchema = Yup.object().shape({
-
-
-
   userId: Yup.string().required('User ID is required'),
   password: Yup.string().required('Password is required'),
   confirmPassword: Yup.string()
@@ -17,10 +14,7 @@ const SignupSchema = Yup.object().shape({
     .required('Confirm Password is required')
 });
 
-
-
 function SIGNUP() {
-
   const dispatch=useDispatch()
   const navigate=useNavigate()
   return (

@@ -13,7 +13,6 @@ export const AUTH_CHECK_FAILURE = 'AUTH_CHECK_FAILURE'
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
-
 export const addTask=(task)=>{
     return{
         type:ADD_TASKS_SUCCESS,
@@ -59,11 +58,12 @@ export const checkAuth = (navigate) => async (dispatch) => {
     dispatch({ type: AUTH_CHECK_REQUEST });
   
     try {
-      const response = await axios.post('http://localhost:2000/api/authUser',{
+      const response = await axios.post('http://localhost:2000/api/authUser',{},{
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true
         });
       if (response.data.success) {
+        console.log(response.data);
         dispatch({
           type: AUTH_CHECK_SUCCESS,
           payload: response.data.user,

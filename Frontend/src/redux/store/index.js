@@ -3,8 +3,7 @@ import { tasksRducer, usersReducer } from "../reducer";
 
 
 const store=configureStore({
-    reducer:{
-        tasks:tasksRducer,
+    reducer:{ 
         user:usersReducer
     }
 })

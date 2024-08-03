@@ -62,11 +62,12 @@ const loginUser = async (req, res) => {
             res.cookie("token", token, {
                 httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
                 expires: new Date(Date.now() + 600000), // Cookie expiration
-                 
+                // secure: true, // Only send cookie over HTTPS
+                // sameSite: "none",
                 
             });
-            console.log(req.cookies);
-                console.log("hjghg");
+            // console.log(req.cookies);
+                // console.log("hjghg");
                 res.status(200).json({ success: true, message: "Login successful", user: savedUser });
             }
         }
@@ -76,7 +77,18 @@ const loginUser = async (req, res) => {
     }
 };
 
-const logout = async (req, res) => {
+
+// controller.js
+const checkAuth = async (req, res) => {
+    // console.log(req.cookies,"y");
+    if (req.user) { // Check if user is authenticated
+      res.status(200).json({ success: true, user: req.user });
+    } else {
+      res.status(401).json({ success: false, message: 'Not authenticated' });
+    } 
+  }; 
+
+  const logout = async (req, res) => {
     const { name } = req.body;
     const user = await Users.findOne({ name });
     if (user) {
@@ -89,15 +101,6 @@ const logout = async (req, res) => {
     }
 };
 
-// controller.js
-const checkAuth = (req, res) => {
-    console.log(req.cookies,"y");
-    if (req.user) { // Check if user is authenticated
-      res.status(200).json({ success: true, user: req.user });
-    } else {
-      res.status(401).json({ success: false, message: 'Not authenticated' });
-    } 
-  }; 
   
 
 export { registerUser, loginUser, logout, checkAuth };
