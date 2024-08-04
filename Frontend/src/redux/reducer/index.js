@@ -1,4 +1,4 @@
-import {  ADD_COMPLETED, ADD_TASKS_SUCCESS, AUTH_CHECK_FAILURE, AUTH_CHECK_REQUEST, AUTH_CHECK_SUCCESS, DELETE_TASKS_SUCCESS, LOGIN_USER_FAILURE, LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, REGISTER_USER_FAILURE, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS } from "../action"
+import {  ADD_COMPLETED, ADD_TASKS_SUCCESS, AUTH_CHECK_FAILURE, AUTH_CHECK_REQUEST, AUTH_CHECK_SUCCESS, DELETE_TASK_FAILURE, DELETE_TASK_REQUEST, DELETE_TASK_SUCCESS, DELETE_TASKS_SUCCESS, LOGIN_USER_FAILURE, LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, REGISTER_USER_FAILURE, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS } from "../action"
 
 // const initialTasks={
 //     tasks:[],
@@ -101,7 +101,7 @@ export  const usersReducer = (state = initialState, action) => {
           console.log(action.payload,"uu");
           return{
               ...state,
-              tasks:[...state.tasks,action.payload],
+              tasks:action.payload.tasks,
               isLoading:false
           }
       case ADD_COMPLETED:
@@ -126,30 +126,25 @@ export  const usersReducer = (state = initialState, action) => {
               tasks:action.payload,
               isLoading:false
           }
-      case "UPDATE_TASKS_FAILURE":
+      case "UPDATE_TASK_FAILURE":
           return{
               ...state,
               error:action.payload,
               isLoading:false
           }
-      case "DELETE_TASKS_REQUEST":
+      case DELETE_TASK_REQUEST:
           return{
               ...state,
               isLoading:true
           }
-      case DELETE_TASKS_SUCCESS:
+      case DELETE_TASK_SUCCESS:
           return{
               ...state,
-              tasks:state.tasks.filter((e)=>{
-                  
-                     
-                          e.task !== action.payload
-                      
-                 
-              }),
+              tasks:action.payload.tasks,
               isLoading:false
           }
-      case "DELETE_TASKS_FAILURE":
+      case DELETE_TASK_FAILURE
+      :
           return{
               ...state,
               error:action.payload,

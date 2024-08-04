@@ -77,6 +77,51 @@ const loginUser = async (req, res) => {
     }
 };
 
+const addTask= async(req,res)=>{
+    try {
+        const {task}=req.body
+         console.log(task);
+        const user = req.user;
+
+        // Push the new task to the user's tasks field
+        user.tasks.push(task);
+
+        // Save the user document
+        await user.save();
+
+        res.status(200).json({ message: 'Task added successfully', tasks: user.tasks });
+        
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+}
+
+const deleteTask = async (req, res) => {
+    try {
+        const { task } = req.body;
+        const current =task.task
+        console.log(current);
+
+        if (!task) {
+            return res.status(400).json({ message: 'Task ID is required' });
+        }
+
+        // Assuming req.user is already populated by middleware
+        const user = req.user;
+
+        // Remove the task with the given taskId
+        user.tasks = user.tasks.filter(task => task.task !== current);
+
+        // Save the user document
+        await user.save();
+
+        res.status(200).json({ message: 'Task deleted successfully', tasks: user.tasks });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+};
+
+
 
 // controller.js
 const checkAuth = async (req, res) => {
@@ -103,4 +148,4 @@ const checkAuth = async (req, res) => {
 
   
 
-export { registerUser, loginUser, logout, checkAuth };
+export { registerUser, loginUser, logout, checkAuth, addTask, deleteTask };

@@ -5,6 +5,7 @@ import "./dashboard.css"
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router";
 import { checkAuth } from "../redux/action";
+import { Toaster, toast } from 'sonner';
 
 function DASHBOARD() {
 
@@ -15,7 +16,9 @@ function DASHBOARD() {
         dispatch(checkAuth(navigate))
     },[])
     return (
+        
         <section className="d-flex flex-column justify-content-center align-items-center my-5 py-2">
+            <Toaster richColors/>
             <div className="my-2">
                 <h1 className="fw-bold text-light half-border-bottom">To Do List</h1>
             </div>
