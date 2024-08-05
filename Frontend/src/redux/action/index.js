@@ -93,7 +93,7 @@ export const registerUser = (userData,navigate) => async (dispatch) => {
   dispatch({ type: REGISTER_USER_REQUEST });
 
   try {
-    
+    console.log("hi");
     const response = await axios.post('http://localhost:2000/api/signup', userData);
     console.log(response.data,"res");
     navigate("/login")

@@ -13,7 +13,7 @@ connect()
 app.use(cookieParser()); 
 
 const corsOptions = {
-  origin: 'http://localhost:5173', // Replace with your client URL
+  origin: true, // Replace with your client URL
   credentials: true, // Allow credentials
 };
 app.use(cors(corsOptions));
