@@ -5,6 +5,7 @@ import "./signup.css";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../redux/action';
+import { Toaster } from 'sonner';
 
 const LoginSchema = Yup.object().shape({
   userId: Yup.string().required('User ID is required'),
@@ -17,6 +18,7 @@ function LOGIN() {
   const dispatch=useDispatch()
   return (
     <section className="d-flex flex-column justify-content-center align-items-center my-5 py-2">
+      <Toaster richColors position="top-center"></Toaster>
       <div className="my-2 signup d-flex flex-column justify-content-center align-items-center">
         <div className="text-white w-100 text-center sign-head mt-2 mb-5">Login</div>
         <Formik

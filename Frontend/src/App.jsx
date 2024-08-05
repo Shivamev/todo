@@ -1,12 +1,14 @@
 import { useNavigate } from 'react-router';
 import './App.css'
+import { useDispatch } from 'react-redux';
+import { checkAuth } from './redux/action';
 
 
 
 function App() {
 
   const navigate=useNavigate()
-  
+  const dispatch=useDispatch()
   // setTimeout(() => {
   //   navigate("/signup")
   // }, 4000);
@@ -34,7 +36,7 @@ function App() {
   <div className="spoke" />
 </div>
  
-<button className='btn btn-outline-success my-5' onClick={()=>navigate("/signup")}>Lets Go...
+<button className='btn btn-outline-success my-5' onClick={()=>navigate("/todo-dashboard")}>Lets Go...
 
 </button>
          

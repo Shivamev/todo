@@ -6,10 +6,10 @@ dotenv.config();
   const authenticate = async (req, res, next) => {
 
   const {token} = req.cookies
-  console.log("hi");
-  console.log(token);
+  // console.log("hi");
+  // console.log(token);
   if (!token) {
-    console.log("2");
+    // console.log("2");
     return res.status(401).json({ success: false, message: 'No token provided' });
   }
 

@@ -57,8 +57,7 @@ export const deleteTask = (task) => async (dispatch) => {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-      withCredentials: true, // Include credentials (cookies)
-      // You can also add other settings like `maxRedirects` if needed
+      withCredentials: true, 
     });
     toast.success('Task deleted');
     dispatch({
@@ -74,6 +73,7 @@ export const deleteTask = (task) => async (dispatch) => {
 };
 
 export const addCompleted=(task)=>{
+  toast.success('Task completed');
     return{
         type:ADD_COMPLETED,
         payload:task
@@ -97,6 +97,7 @@ export const registerUser = (userData,navigate) => async (dispatch) => {
     const response = await axios.post('http://localhost:2000/api/signup', userData);
     console.log(response.data,"res");
     navigate("/login")
+    toast.success('User Registered');
     dispatch({
       type: REGISTER_USER_SUCCESS,
       payload: response.data,
@@ -118,7 +119,8 @@ export const checkAuth = (navigate) => async (dispatch) => {
         withCredentials: true
         });
       if (response.data.success) {
-        console.log(response.data);
+        console.log(response.data); 
+       
         dispatch({
           type: AUTH_CHECK_SUCCESS,
           payload: response.data.user,
@@ -152,14 +154,17 @@ export const loginUser = (userData,navigate) => async (dispatch) => {
         // You can also add other settings like `maxRedirects` if needed
       });
       console.log(response.data,"res");
+   
       navigate("/todo-dashboard")
-      toast.success("User Logged in succeddfully")
+      
     //   Cookies.set('token', response.data.token, { expires: 1 });
       dispatch({
         type: LOGIN_USER_SUCCESS,
         payload: response.data,
       });
+      toast.success("User Logged in succeddfully")
     } catch (error) {
+      toast.error("Invalid Credentials")
       dispatch({
         type: LOGIN_USER_FAILURE,
         payload: error.response ? error.response.data : error.message,

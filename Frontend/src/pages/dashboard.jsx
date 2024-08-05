@@ -18,7 +18,7 @@ function DASHBOARD() {
     return (
         
         <section className="d-flex flex-column justify-content-center align-items-center my-5 py-2">
-            <Toaster richColors/>
+            <Toaster richColors position="top-center"/>
             <div className="my-2">
                 <h1 className="fw-bold text-light half-border-bottom">To Do List</h1>
             </div>

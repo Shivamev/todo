@@ -80,7 +80,7 @@ const loginUser = async (req, res) => {
 const addTask= async(req,res)=>{
     try {
         const {task}=req.body
-         console.log(task);
+        //  console.log(task);
         const user = req.user;
 
         // Push the new task to the user's tasks field

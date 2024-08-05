@@ -71,7 +71,8 @@ export  const usersReducer = (state = initialState, action) => {
           ...state,
           loading: false,
           user: action.payload,
-          tasks:action.payload.tasks
+          tasks:action.payload.tasks,
+          
         };
         case AUTH_CHECK_FAILURE:
         return {
